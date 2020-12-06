@@ -1,0 +1,4 @@
+name=Show zone
+id=ShowZone
+description=Appends the zone of the square to the context menu
+poster=poster.png
