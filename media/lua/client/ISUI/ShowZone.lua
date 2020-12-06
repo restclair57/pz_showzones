@@ -7,6 +7,10 @@ local oldISWOCMcreateMenu = ISWorldObjectContextMenu.createMenu;
 ISWorldObjectContextMenu.createMenu = function(player, worldobjects, x, y, test)
   context = oldISWOCMcreateMenu(player,worldobjects, x, y, test);
   
+  if context.zoneButton then
+    context:removeChild(context.zoneButton);
+  end
+  
   if clickedSquare then
     local clickX = clickedSquare:getX();
     local clickY = clickedSquare:getY();
@@ -26,8 +30,8 @@ ISWorldObjectContextMenu.createMenu = function(player, worldobjects, x, y, test)
     end
     if text == "" then text = "Zone(s): None" end;
     -- (x, y, width, height, title, clicktarget, onclick, onmousedown, allowMouseUpProcessing)
-    button = ISButton:new(0, -17, getTextWidth(text), 17, text, nil, nil);
-    context:addChild(button);
+    context.zoneButton = ISButton:new(0, -17, getTextWidth(text), 17, text, nil, nil);
+    context:addChild(context.zoneButton);
   end
   
   return context;
